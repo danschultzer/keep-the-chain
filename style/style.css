@@ -130,7 +130,7 @@ hr								{height: 10px; border: 0; }
 
 	/* Overlay */
 
-	.chainTimeline .monthList li .overlay 			{position: absolute; color: #fff; margin: 10px 0 0 -65px; width: auto; border-radius:4px; background: rgba(0,0,0,0.6);height:auto;padding:15px;}
+	.chainTimeline .monthList li .overlay 			{position: absolute; color: #fff; margin: 10px 0 0 -65px; width: auto; border-radius:4px; background: rgba(0,0,0,0.6);height:auto;padding:15px;z-index: 999;}
 	.iefilter .chainTimeline .monthList li .overlay {filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000,endColorstr=#99000000);zoom:1;}
 
 	.chainTimeline .monthList li .overlay  .arrow-up 			{border-left: 7px solid transparent;border-right: 7px solid transparent;border-bottom: 7px solid rgba(0,0,0,0.6);float:left;position:absolute;top: -7px;margin: 0 0 0 58px;}
