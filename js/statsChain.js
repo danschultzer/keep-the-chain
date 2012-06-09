@@ -54,6 +54,7 @@ function redoStats(object)
 function socialShare(object)
 {
 	var url = "http://keep-the-chain.com";
+	var img = "http://keep-the-chain.com/images/keep-the-chain-badge.png";
 	var texts = ["I'm being proactive with Keep the chain!",
 				 "Just killing procrastination...",
 				 "Who is awesome like me?",
@@ -72,7 +73,7 @@ function socialShare(object)
 
 	if(text.length>140) console.log("Social string is too long!");
 	
-	$(".social.facebook").attr("href","http://www.facebook.com/sharer.php?s=100&p[title]="+encodeURIComponent(text)+"&p[url]="+url);
+	$(".social.facebook").attr("href","http://www.facebook.com/sharer.php?s=100&p[title]="+encodeURIComponent(text)+"&p[url]="+url+"&p[images][0]="+img);
 	$(".social.twitter").attr("href","http://twitter.com/share?text="+encodeURIComponent(text)+"&url="+encodeURIComponent(url)+"&related=dreamconception");
 	$(".social.linkedin").attr("href","http://www.linkedin.com/shareArticle?mini=true&url="+encodeURIComponent(url)+"&title="+encodeURIComponent(text));
 }
