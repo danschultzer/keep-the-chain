@@ -55,14 +55,20 @@ function socialShare(object)
 {
 	var url = "http://keep-the-chain.com";
 	var img = "http://keep-the-chain.com/images/keep-the-chain-badge.png";
-	var texts = ["I'm being proactive with Keep the chain!",
+	var texts = ["I'm being proactive with Keep the Chain!",
 				 "Just killing procrastination...",
 				 "Who is awesome like me?",
-				 "Let's get going, keep the chain!"]
+				 "Let's get going, Keep the Chain!"]
 	var text = texts[Math.floor(Math.random()*texts.length)];
 	if (object.activeDays>0) {
-		text += " Going at "+object.activeDays+" active day";
-		if (object.activeDays>1) text += "s";
+		// If we are currently in a chain, and the chain is more
+		// than a specific length, we change the default message
+		if (object.currentlyInChain == 1 && object.lastChainLength>2) {
+			text += " "+object.lastChainLength+" days in a row today";
+		} else {
+			text += " Going at "+object.activeDays+" active day";
+			if (object.activeDays>1) text += "s";
+		}
 	}
 
 	if (typeof object.achievementsList == "object" && object.achievementsList.length>0) {
