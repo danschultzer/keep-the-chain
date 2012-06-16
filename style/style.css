@@ -28,10 +28,10 @@ body { font-family: Arial, sans-serif; background: url(img/body_bg.png) repeat; 
 .box a 							{text-decoration: none; color: #1D611E;}
 .box a:hover 					{color: #34AD36;}
 
-#content						{max-width: 960px; margin: 0 auto; padding: 0 20px;font-size:14px;line-height:20px;}
-#content h2						{font: normal 18px 'PTSansBold', arial; padding: 0 0 10px;}
-#content p						{margin-bottom:10px;}
-#content p strong				{font-weight:bold;}
+.content						{max-width: 960px; margin: 0 auto; padding: 0 20px;font-size:14px;line-height:20px;}
+.content h2						{font: normal 18px 'PTSansBold', arial; padding: 0 0 10px;}
+.content p						{margin-bottom:10px;}
+.content p strong				{font-weight:bold;}
 
 hr								{height: 10px; border: 0; }
 

@@ -49,8 +49,7 @@
 
 	<div id="chainTimeline"></div>
 
-	<a name="readme"></a>
-	<div id="content">
+	<div class="content" id="readme">
 		<div class="box">
 			<h2>What is this, and how do I use it?</h2>
 			<div>
@@ -83,17 +82,22 @@
 		// Retrieve saved data
 		var key = "chain-data";
 
-		// Overwrite functionality
-		function loadData () {
+		// Load functionality
+		function loadData () {			
 			console.log("Current storage size are: "+$.jStorage.storageSize());
 			var data = $.jStorage.get(key, false);
 			if (data) return data;
 			else return {};
 		}
 
-		// Overwrite functionality
+		// Save functionality
 		function saveData (data) {
 			$.jStorage.set(key, data);
+
+			// We will remove readme auto scroll if data is saved
+			if (window.location.hash == '#readme') {
+				window.location.hash = '';
+			}
 		}
 
 		// Reset functionality
@@ -112,17 +116,22 @@
 			$("#chainTimeline").css("min-height","0px");
 			$("#chainTimeline").css("min-height",$("#chainTimeline").height());
 
-			// Automatically position the scroll to the last checked, if needed
-			var newestEl = $(".monthList .checked").last();
-			if (newestEl.length && (newestEl.offset().top-$(window).scrollTop())>$(window).height()/2) {
-				$('html, body').animate({scrollTop: $(newestEl).offset().top}, 200);
-			}
-
 			// Redo all the statistics and achievements
 			redoStats(object);
 			achievements(object);
 			achievementsBox(object);
 			socialShare(object);
+			
+			// Automatically position the scroll to the last checked row, if possible.
+			// If there is a #readme hash in the URL, we will scroll to readme instead.
+			if (window.location.hash != '#readme') {
+				var newestEl = $(".monthList .checked").last();
+				if (newestEl.length && (newestEl.offset().top-$(window).scrollTop())>$(window).height()/2) {
+					$('html, body').animate({scrollTop: $(newestEl).offset().top}, 200);
+				}
+			} else {
+				$('html, body').animate({scrollTop: $("#readme").offset().top}, 200);
+			}
 		}
 
 		var chainTimelineObj;
