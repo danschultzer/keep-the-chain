@@ -102,7 +102,7 @@ var renderChainTimeline = function (container, year, loadDataF, saveDataF, reset
 		this.date = (year) ? new Date(year) : new Date();
 		this.year = this.date.getFullYear();
 
-		// loadData functionality
+		// Load data functionality
 		function loadData () { alert("No load method exists!");return {}; };
 		this.loadDataFunc = (loadDataF) ? loadDataF : loadData;
 

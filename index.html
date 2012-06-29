@@ -10,6 +10,7 @@
 	<script type="text/javascript" src="js/jstorage.min.js"></script>
 	<script type="text/javascript" src="js/chainTimeline.js"></script>
 	<script type="text/javascript" src="js/statsChain.js"></script>
+	<script type="text/javascript" src="js/syncChain.js"></script>
 
 	<link href="style/fonts/pt-sans.css" rel="stylesheet" type="text/css"/>
 	<link href="style/style.css" rel="stylesheet" type="text/css"/>
@@ -47,6 +48,7 @@
 
 	<div class="clear"></div>
 
+	<div id="chainTimelineSynchronization"></div>
 	<div id="chainTimeline"></div>
 
 	<div class="content" id="readme">
@@ -63,6 +65,7 @@
 			<ul>
 				<li>This tool works with local storage. Nothing is stored on any servers, it is all in your local computer!</li>
 				<li>Obviously, the restriction are that you are not able to switch to another computer, or other browser to continue the tracking. It will only be stored in your local browser. If you wish a much more feature rich tracking tool, then <a href="http://keep-the-chain.com/">sign up for beta access to our new consistency tool</a>.</li>
+				<li><strong>Note:</strong> There is a synchronization module built-in as well, in case you wish access your data from multiple devices. When enabled, the module will connect to the keep-the-chain.com's server, and backup your data.</li>
 				<li>You can <a href="https://github.com/dandreamconception/keep-the-chain/zipball/master">download the tool</a>, share it, and even <a href="https://github.com/dandreamconception/keep-the-chain/" target="_blank">modify it</a>.</li>
 				<li>This tool is released under MIT license, and the design is copyright 2012 under <a href="http://dreamconception.com/" target="_blank">Dream Conception</a>.</li>
 			</ul>
@@ -136,8 +139,15 @@
 
 		var chainTimelineObj;
 		$(document).ready(function(){
-			chainTimelineObj = renderChainTimeline('chainTimeline',null,loadData,saveData,resetData,postProcess);
+			// We build the timeline object first.
+			chainTimelineObj = renderChainTimeline('chainTimeline', null, loadData, saveData, resetData, postProcess);
+
+			// Then start the timer.
 			startTimer();
+
+			// At last, we build the synchronization object.
+			// There is both save and load functionality to be included here, for the credentials.
+			syncChainData('chainTimelineSynchronization', chainTimelineObj, function(){return $.jStorage.get('syncDataAuth', false);}, function(data){$.jStorage.set('syncDataAuth', data);});
 		});
 	</script>
 		
