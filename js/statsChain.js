@@ -3,8 +3,6 @@
  * Script to calculate and siaply different statistics things in the chainTimeline.js
  * script. It is only meant to work with specific stylesheet and HTML setup.
  *
- * This script will furthmore log different important aspects in the console.log.
- *
  * Copyright (c) 2012 Dan Schultzer, Dream Conception, dan@dreamconception.com
  * Project homepage: keep-the-chain.com
  *
@@ -77,8 +75,6 @@ function socialShare(object)
 	}
 	text += "!";
 
-	if (text.length>140) if (typeof console == 'object') console.log("Social string is too long!");
-	
 	$(".social.facebook").attr("href","http://www.facebook.com/sharer.php?s=100&p[title]="+encodeURIComponent(text)+"&p[url]="+url+"&p[images][0]="+img);
 	$(".social.twitter").attr("href","http://twitter.com/share?text="+encodeURIComponent(text)+"&url="+encodeURIComponent(url)+"&related=dreamconception");
 	$(".social.linkedin").attr("href","http://www.linkedin.com/shareArticle?mini=true&url="+encodeURIComponent(url)+"&title="+encodeURIComponent(text));
@@ -102,7 +98,6 @@ function achievements(object)
 		var achievementRule = achievementsRuleSet[ruleKey](object);
 		if (achievementRule && achievementRule.dates.length>0) {
 			for (var i=0;i<achievementRule.dates.length;i++) {
-				if (typeof console == 'object') console.log("Achievement "+ruleKey+" reached ("+achievementRule.dates[i].year+"-"+achievementRule.dates[i].month+"-"+achievementRule.dates[i].day+"): "+achievementRule.text);
 				achievementsList.push({ruleKey:ruleKey,year:achievementRule.dates[i].year,month:achievementRule.dates[i].month,day:achievementRule.dates[i].day,text:achievementRule.text});
 			}
 		}
