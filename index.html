@@ -87,8 +87,8 @@
 		var key = "chain-data";
 
 		// Load functionality
-		function loadData () {			
-			console.log("Current storage size are: "+$.jStorage.storageSize());
+		function loadData () {
+			if (typeof console == 'object') console.log("Current storage size are: "+$.jStorage.storageSize());
 			var data = $.jStorage.get(key, false);
 			if (data) return data;
 			else return {};

@@ -77,7 +77,7 @@ function socialShare(object)
 	}
 	text += "!";
 
-	if(text.length>140) console.log("Social string is too long!");
+	if (text.length>140) if (typeof console == 'object') console.log("Social string is too long!");
 	
 	$(".social.facebook").attr("href","http://www.facebook.com/sharer.php?s=100&p[title]="+encodeURIComponent(text)+"&p[url]="+url+"&p[images][0]="+img);
 	$(".social.twitter").attr("href","http://twitter.com/share?text="+encodeURIComponent(text)+"&url="+encodeURIComponent(url)+"&related=dreamconception");
@@ -102,7 +102,7 @@ function achievements(object)
 		var achievementRule = achievementsRuleSet[ruleKey](object);
 		if (achievementRule && achievementRule.dates.length>0) {
 			for (var i=0;i<achievementRule.dates.length;i++) {
-				console.log("Achievement "+ruleKey+" reached ("+achievementRule.dates[i].year+"-"+achievementRule.dates[i].month+"-"+achievementRule.dates[i].day+"): "+achievementRule.text);
+				if (typeof console == 'object') console.log("Achievement "+ruleKey+" reached ("+achievementRule.dates[i].year+"-"+achievementRule.dates[i].month+"-"+achievementRule.dates[i].day+"): "+achievementRule.text);
 				achievementsList.push({ruleKey:ruleKey,year:achievementRule.dates[i].year,month:achievementRule.dates[i].month,day:achievementRule.dates[i].day,text:achievementRule.text});
 			}
 		}
