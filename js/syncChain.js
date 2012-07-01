@@ -81,6 +81,9 @@
 		// Enable status bar scrolling
 		this.enableStatusBarScrolling();
 
+		// Set cross domain
+		$.support.cors = true;
+
 		// If the synchronization is enabled, we will authorize
 		// and enable access
 		if (this.syncAuthData.enabled == true) {
@@ -506,6 +509,65 @@
 		// Display the overlay
 		this.overlayObj.toggle_overlay('synchronizeData',html,true,true);
 	}
+	
+	/**
+	 * Functionality to fade in/out, using CSS3 or jQuery
+	**/
+	this.fade = function (object, direction, miliseconds)
+	{
+		// Make sure transition has been checked for
+		this.checkForCSS3Transition();
+		
+		// CSS3 transition
+		if (this.transitionSupported) {
+			$(object).css({
+						'-webkit-transition': 'opacity '+miliseconds+'ms ease-in-out',
+						'-moz-transition': 'opacity '+miliseconds+'ms ease-in-out',
+						'-o-transition': 'opacity '+miliseconds+'ms ease-in-out',
+						'-ms-transition': 'opacity '+miliseconds+'ms ease-in-out',
+						'transition': 'opacity '+miliseconds+'ms ease-in-out'});
+			if (direction=='out') {
+				// Make sure object is visible
+				$(object).show();
+
+				// Start animation
+				$(object).css({'opacity':'0','pointer-events': 'none'});
+			} else {
+				// Make sure that the animation will be triggered, and object is not hidden
+				$(object).css({'opacity':'0','pinter-events':'none'}).show();
+
+				// Run after, to trigger CSS3 animation, in case an append has been done
+				setTimeout(function(){$(object).css({'opacity':'1','pointer-events':'auto'});},1);
+			}
+
+		// jQuery fadein/out
+		} else {
+			if (direction == 'out') $(object).fadeOut(miliseconds);
+			else $(object).fadeIn(miliseconds);		
+		}
+	}
+
+	/**
+	 * Test for CSS3 transition
+	**/
+	this.checkForCSS3Transition = function ()
+	{
+		if (typeof this.transitionSupported != "boolean") {
+			this.transitionSupported = false;
+
+			var b = document.body || document.documentElement;
+			var s = b.style;
+			var p = 'transition';
+			if(typeof s[p] == 'string') { this.transitionSupported = true; }
+
+			// Tests for vendor specific prop
+			v = ['Moz', 'Webkit', 'Khtml', 'O', 'ms'],
+			p = p.charAt(0).toUpperCase() + p.substr(1);
+			for(var i=0; i<v.length; i++) {
+				if(typeof s[v[i] + p] == 'string') { this.transitionSupported = true; }
+			}
+		}
+	}
 
 	/**
 	 * A simple overlay handler script.
@@ -518,10 +580,10 @@
 		this.toggle_overlay = function (k, html, show, clickoverlay) {
 			if (show == true) {
 				if ( typeof this.$overlay_wrapper[k] == 'undefined' ) this.append_overlay(k, html, clickoverlay);
-				this.$overlay_wrapper[k].fadeIn('fast');
+				this.fade(this.$overlay_wrapper[k], 'in', '400');
 				$('BODY').addClass('noscroll');
 			} else {
-				if ( typeof this.$overlay_wrapper[k] != 'undefined' ) this.$overlay_wrapper[k].fadeOut('fast');
+				if ( typeof this.$overlay_wrapper[k] != 'undefined' ) this.fade(this.$overlay_wrapper[k], 'out', '400');;
 				$('BODY').removeClass('noscroll');
 			}
 		}
@@ -542,6 +604,8 @@
 		}
 
 		this.clear_overlay = function (k){
+			$('BODY').removeClass('noscroll');
+
 			this.$($overlay_wrapper[k]).remove();
 			delete this.$overlay_wrapper[k];
 
