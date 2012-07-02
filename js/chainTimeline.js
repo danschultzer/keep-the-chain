@@ -122,13 +122,20 @@ var renderChainTimeline = function (container, year, loadDataF, saveDataF, reset
 		this.container.addClass("chainTimeline");
 
 		// Remove the overlays if element is clicked outside
-		$("html").click(function () { $("#"+container+" li .overlay").remove(); });
+		$("html").bind('click', function () { removeDayOverlay(); });
 
 		// Load in the data
 		this.data = this.loadDataFunc();
 
 		// Start render
 		this.render();
+	}
+	
+	/**
+	 * Function to remove the day overlay
+	**/
+	this.removeDayOverlay = function () {
+		$("li .overlay", this.container).remove();
 	}
 
 	/**
@@ -369,7 +376,7 @@ var renderChainTimeline = function (container, year, loadDataF, saveDataF, reset
 						var completed = is_completed;
 
 						list_item.bind("click",function(e){
-								$("li .overlay").remove();
+								object.removeDayOverlay();
 
 								// Create an overlay
 								var overlay = $("<div><div class='arrow-up'></div>");
