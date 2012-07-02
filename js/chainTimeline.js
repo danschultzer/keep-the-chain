@@ -397,6 +397,17 @@ var renderChainTimeline = function (container, year, loadDataF, saveDataF, reset
 
 								list_item.append(overlay);
 
+								// Position the overlay correctly
+								var overlayObj = $('.overlay',list_item);
+								var margin = (overlayObj.outerWidth()-list_item.width())/2;
+								if ((overlayObj.position().left-margin) < 0) {
+									margin += (overlayObj.position().left-margin);
+								} else if ((overlayObj.position().left+overlayObj.outerWidth()-margin) > $(window).width()) {
+									margin += overlayObj.position().left+overlayObj.outerWidth()-margin-$(window).width();
+								}
+								overlayObj.css({'margin-left': -margin});
+								$('.arrow-up', overlayObj).css({'margin-left': margin-parseInt($('.overlay', list_item).css('padding-left'))/2});
+
 								// Detect the correct position for the overlay
 								var target = list_item;
 								var offset = $(target).offset();
