@@ -115,7 +115,7 @@
 	**/
 	this.updateStatus = function(message) {
 		if (message == '' && $('#syncStatus').is(":visible")) $('#syncStatus').hide();
-		else if (message != '' && !$('#syncStatus').is(":visible")) $('#syncStatus').fadeIn('fast');
+		else if (message != '' && !$('#syncStatus').is(":visible")) this.fade($('#syncStatus'), 'in', '400');
 
 		$('#syncStatus', this.synhronizationDisplayContainer).html(message);
 	}
@@ -184,6 +184,20 @@
 	this.buildDisplay = function () {
 		$(this.synhronizationDisplayContainer).html('');
 
+		// Append the synchronization button
+		$(this.synhronizationDisplayContainer).append(this.buildSyncbutton());
+
+		// Append a status wrapper for the synchronization calls
+		$(this.synhronizationDisplayContainer).append(this.buildStatusDiv());
+
+		// Trigger scroll function
+		$(window).scroll();
+	}
+	
+	/**
+	 * Function to build the sync button
+	**/
+	this.buildSyncbutton = function () {
 		// Display different a turn on, or turn off button
 		// depending on if synchronization is enabled, or not
 		if (this.syncAuthData.enabled == true) {
@@ -214,15 +228,15 @@
 				});
 			}());
 		}
-
-		// Append the synchronization button
-		$(this.synhronizationDisplayContainer).append(syncButton);
-
-		// Append a status wrapper for the synchronization calls
-		$(this.synhronizationDisplayContainer).append('<div id="syncStatus"></div>');
-
-		// Trigger scroll function
-		$(window).scroll();
+		
+		return syncButton;
+	}
+	
+	/**
+	 * Function to build the info div
+	**/
+	this.buildStatusDiv = function () {
+		return $('<div id="syncStatus"></div>');
 	}
 
 	/**
@@ -595,8 +609,8 @@
 			if ( clickoverlay ) {
 				(function () {
 					var object = this;
-					this.$overlay_wrapper[k].click(function(){object.toggle_overlay(k,'',false,false);}); // Hide when clicked overlay
-					this.$overlay_panel[k].click(function(e){e.stopPropagation();}); // Stop children to propagate to parent
+					this.$overlay_wrapper[k].bind('click', function(){object.toggle_overlay(k,'',false,false);}); // Hide when clicked overlay
+					this.$overlay_panel[k].bind('click', function(e){e.stopPropagation();}); // Stop children to propagate to parent
 				}());
 			}
 
