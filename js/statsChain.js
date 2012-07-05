@@ -241,6 +241,12 @@ function countdownTimer()
 	end_of_day.setHours(23,59,59,999); // End of the day
 	var today = new Date(); // The time now
 
+	// Simple check if the date has changed and we should update the render
+	if(chainTimelineObj.renderTime != false && 
+		today.getDate() > chainTimelineObj.renderTime.getDate()) {
+		chainTimelineObj.render();
+	}
+
 	function timeVal(num) {
 		return (num < 10 ? "0" : "" ) + num;
 	}

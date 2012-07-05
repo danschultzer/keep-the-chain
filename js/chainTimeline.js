@@ -84,6 +84,7 @@ var renderChainTimeline = function (container, year, loadDataF, saveDataF, reset
 	this.monthsOfYear = ["January","February","March","April","May","June","July","August","September","October","November","December"];
 	this.daysInWeek = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"];
 	this.activeDays = this.numberOfChains = this.longestChainLength = this.lastChainLength = this.currentlyInChain = 0;
+	this.renderTime = false;
 
 	/**
 	 * Initializer functionality
@@ -444,6 +445,8 @@ var renderChainTimeline = function (container, year, loadDataF, saveDataF, reset
 			if(displayRow == false) monthList.hide();
 			
 			this.container.append(monthList);
+			
+			this.renderTime = new Date();
 		}
 
 		// Render reset button.
