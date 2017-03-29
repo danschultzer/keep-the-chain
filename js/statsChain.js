@@ -51,8 +51,8 @@ function redoStats(object)
 **/
 function socialShare(object)
 {
-	var url = "http://keep-the-chain.com";
-	var img = "http://keep-the-chain.com/images/keep-the-chain-badge.png";
+	var url = "https://keep-the-chain.com";
+	var img = "https://keep-the-chain.com/images/keep-the-chain-badge.png";
 	var texts = ["I'm being proactive with Keep the Chain!",
 				 "Just killing procrastination...",
 				 "Who is awesome like me?",
@@ -75,9 +75,9 @@ function socialShare(object)
 	}
 	text += "!";
 
-	$(".social.facebook").attr("href","http://www.facebook.com/sharer.php?s=100&p[title]="+encodeURIComponent(text)+"&p[url]="+url+"&p[images][0]="+img);
-	$(".social.twitter").attr("href","http://twitter.com/share?text="+encodeURIComponent(text)+"&url="+encodeURIComponent(url)+"&related=dreamconception");
-	$(".social.linkedin").attr("href","http://www.linkedin.com/shareArticle?mini=true&url="+encodeURIComponent(url)+"&title="+encodeURIComponent(text));
+	$(".social.facebook").attr("href","https://www.facebook.com/sharer.php?s=100&p[title]="+encodeURIComponent(text)+"&p[url]="+url+"&p[images][0]="+img);
+	$(".social.twitter").attr("href","https://twitter.com/share?text="+encodeURIComponent(text)+"&url="+encodeURIComponent(url)+"&related=dreamconception");
+	$(".social.linkedin").attr("href","https://www.linkedin.com/shareArticle?mini=true&url="+encodeURIComponent(url)+"&title="+encodeURIComponent(text));
 }
 
 /**
@@ -157,7 +157,7 @@ var achievementsRuleSet = {
 	full14days: function(object) {
 		return recurringAchievement(object, 14, "2 weeks is great, now you just need finish the month out!");
 	},
-	full21days: function(object) {
+	fuh:l21days: function(object) {
 		return recurringAchievement(object, 21, "21 days is the average to learn a new habit, great!");
 	},
 	full30days: function(object) {
