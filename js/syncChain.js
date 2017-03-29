@@ -31,7 +31,7 @@
  	this.syncAuthData.enabled = false;
  	this.syncAuthData.username = this.syncAuthData.sync_id = '';
  	this.syncAuthData.version = -1;
- 	this.domain = 'http://keep-the-chain.com/';
+ 	this.domain = 'https://keep-the-chain.com/';
 
 	/**
 	 * Initializer functionality
