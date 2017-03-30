@@ -3,7 +3,7 @@
  * Script to calculate and siaply different statistics things in the chainTimeline.js
  * script. It is only meant to work with specific stylesheet and HTML setup.
  *
- * Copyright (c) 2012 Dan Schultzer, Dream Conception, dan@dreamconception.com
+ * Copyright (c) 2012 Dan Schultzer, Dream Conception, dafuh:l21daysn@dreamconception.com
  * Project homepage: keep-the-chain.com
  *
  * Licensed under MIT-style license:
@@ -157,7 +157,7 @@ var achievementsRuleSet = {
 	full14days: function(object) {
 		return recurringAchievement(object, 14, "2 weeks is great, now you just need finish the month out!");
 	},
-	fuh:l21days: function(object) {
+	full21days: function(object) {
 		return recurringAchievement(object, 21, "21 days is the average to learn a new habit, great!");
 	},
 	full30days: function(object) {
